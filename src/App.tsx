@@ -107,52 +107,53 @@ function HomePage({ onViewChange }: HomePageProps) {
     <div className="min-h-screen">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-5">
+        <div className="max-w-6xl mx-auto px-4 py-3 sm:py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="bg-blue-600 p-2 rounded-xl">
                 <Shield className="w-6 h-6 text-white" />
               </div>
-              <div className="min-h-[3rem] flex flex-col justify-center">
-                <h1 className="text-xl font-bold text-gray-900 leading-tight">MediSafe</h1>
-                <p className="text-sm text-gray-600 leading-tight">Medicine Safety Analyzer</p>
+              <div className="min-h-[2.5rem] sm:min-h-[3rem] flex flex-col justify-center">
+                <h1 className="text-lg sm:text-xl font-bold text-gray-900 leading-tight">MediSafe</h1>
+                <p className="text-xs sm:text-sm text-gray-600 leading-tight hidden sm:block">Medicine Safety Analyzer</p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <LanguageSelector />
               
               {user ? (
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-1 sm:space-x-3">
                   {!hasActiveSubscription && (
                     <button
                       onClick={() => onViewChange('subscription')}
-                      className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:shadow-lg transition-all min-h-[2.5rem]"
+                      className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:shadow-lg transition-all min-h-[2.5rem]"
                     >
                       <Crown className="w-4 h-4" />
-                      <span className="hidden sm:inline leading-tight">Upgrade Pro</span>
+                      <span className="text-xs sm:text-sm leading-tight hidden sm:inline">Upgrade Pro</span>
+                      <span className="text-xs leading-tight sm:hidden">Pro</span>
                     </button>
                   )}
                   
                   {hasActiveSubscription && (
                     <button
                       onClick={() => onViewChange('doctors')}
-                      className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors min-h-[2.5rem]"
+                      className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors min-h-[2.5rem]"
                     >
                       <Stethoscope className="w-4 h-4" />
-                      <span className="hidden sm:inline leading-tight">Consult Doctor</span>
+                      <span className="text-xs sm:text-sm leading-tight hidden sm:inline">Consult Doctor</span>
                     </button>
                   )}
                   
                   <button
                     onClick={() => onViewChange('history')}
-                    className="flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors min-h-[2.5rem]"
+                    className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors min-h-[2.5rem]"
                   >
                     <History className="w-4 h-4" />
-                    <span className="hidden sm:inline leading-tight">{t('nav.history')}</span>
+                    <span className="text-xs sm:text-sm leading-tight hidden md:inline">{t('nav.history')}</span>
                   </button>
                   
-                  <div className="flex items-center space-x-2 px-3 py-2 bg-blue-50 rounded-lg min-h-[2.5rem]">
+                  <div className="hidden sm:flex items-center space-x-2 px-3 py-2 bg-blue-50 rounded-lg min-h-[2.5rem]">
                     <User className="w-4 h-4 text-blue-600" />
                     <span className="text-sm font-medium text-blue-700 hidden sm:inline leading-tight">{user.name}</span>
                     {hasActiveSubscription && (
@@ -162,20 +163,20 @@ function HomePage({ onViewChange }: HomePageProps) {
                   
                   <button
                     onClick={logout}
-                    className="flex items-center space-x-2 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors min-h-[2.5rem]"
+                    className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors min-h-[2.5rem]"
                   >
                     <LogOut className="w-4 h-4" />
                     <span className="hidden sm:inline leading-tight">{t('nav.logout')}</span>
                   </button>
                 </div>
               ) : (
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 sm:space-x-3">
                   <button
                     onClick={() => onViewChange('subscription')}
-                    className="flex items-center space-x-2 px-3 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:shadow-lg transition-all min-h-[2.5rem]"
+                    className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg hover:shadow-lg transition-all min-h-[2.5rem]"
                   >
                     <Crown className="w-4 h-4" />
-                    <span className="leading-tight">Consult Doctors</span>
+                    <span className="text-xs sm:text-sm leading-tight">Consult</span>
                   </button>
                   
                   <button
@@ -189,7 +190,7 @@ function HomePage({ onViewChange }: HomePageProps) {
               )}
               
               {/* Bolt.new Badge */}
-              <BoltBadge variant="black" className="ml-2" />
+              <BoltBadge variant="black" className="ml-1 sm:ml-2 hidden sm:block" />
             </div>
           </div>
         </div>
@@ -199,11 +200,11 @@ function HomePage({ onViewChange }: HomePageProps) {
         {/* Hero Section */}
         <div className="text-center mb-12">
           <div className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-6">
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight min-h-[4rem] flex items-center justify-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight min-h-[3rem] sm:min-h-[4rem] flex items-center justify-center px-4">
               {t('home.title')}
             </h2>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed min-h-[3rem] flex items-center justify-center">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed min-h-[2rem] sm:min-h-[3rem] flex items-center justify-center px-4">
             {t('home.subtitle')}
           </p>
         </div>
@@ -235,7 +236,7 @@ function HomePage({ onViewChange }: HomePageProps) {
         )}
 
         {/* Action Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12">
           <ActionCard
             icon={<Camera className="w-8 h-8" />}
             title={t('home.scan')}
@@ -260,7 +261,7 @@ function HomePage({ onViewChange }: HomePageProps) {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
           <FeatureCard
             icon={<AlertTriangle className="w-6 h-6 text-amber-600" />}
             title={t('features.risk')}
@@ -284,14 +285,14 @@ function HomePage({ onViewChange }: HomePageProps) {
         </div>
 
         {/* Warning Banner */}
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
-          <div className="flex items-start space-x-4">
+        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start space-y-3 sm:space-y-0 sm:space-x-4">
             <div className="bg-amber-100 p-2 rounded-lg">
               <AlertTriangle className="w-6 h-6 text-amber-600" />
             </div>
             <div>
-              <h3 className="font-semibold text-amber-900 mb-2 min-h-[1.5rem] flex items-center">{t('disclaimer.title')}</h3>
-              <p className="text-amber-800 leading-relaxed">
+              <h3 className="font-semibold text-amber-900 mb-2 text-sm sm:text-base">{t('disclaimer.title')}</h3>
+              <p className="text-amber-800 leading-relaxed text-sm sm:text-base">
                 {t('disclaimer.text')}
               </p>
             </div>
@@ -314,16 +315,16 @@ function ActionCard({ icon, title, description, onClick, gradient }: ActionCardP
   return (
     <button
       onClick={onClick}
-      className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 text-left w-full"
+      className="group bg-white rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 text-left w-full"
     >
-      <div className={`bg-gradient-to-r ${gradient} p-3 rounded-xl w-fit mb-4 group-hover:scale-110 transition-transform duration-300`}>
+      <div className={`bg-gradient-to-r ${gradient} p-2 sm:p-3 rounded-xl w-fit mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300`}>
         <div className="text-white">{icon}</div>
       </div>
-      <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors min-h-[2rem] flex items-center">
+      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
         {title}
       </h3>
-      <p className="text-gray-600 leading-relaxed mb-4 min-h-[3rem]">{description}</p>
-      <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform duration-300">
+      <p className="text-gray-600 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">{description}</p>
+      <div className="flex items-center text-blue-600 font-medium group-hover:translate-x-1 transition-transform duration-300 text-sm sm:text-base">
         Get Started <ChevronRight className="w-4 h-4 ml-1" />
       </div>
     </button>
@@ -338,10 +339,10 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-      <div className="mb-4">{icon}</div>
-      <h3 className="font-semibold text-gray-900 mb-2 min-h-[1.5rem] flex items-center">{title}</h3>
-      <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+    <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+      <div className="mb-3 sm:mb-4">{icon}</div>
+      <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">{title}</h3>
+      <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{description}</p>
     </div>
   );
 }

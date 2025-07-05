@@ -99,9 +99,9 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
     <div className="min-h-screen bg-gray-900">
       {/* Header */}
       <div className="bg-black/50 backdrop-blur-sm p-4 flex items-center justify-between sticky top-0 z-10">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           <Camera className="w-6 h-6 text-white" />
-          <h1 className="text-white font-semibold">Scan Medicine</h1>
+          <h1 className="text-white font-semibold text-sm sm:text-base">Scan Medicine</h1>
         </div>
         <button
           onClick={onBack}
@@ -123,8 +123,8 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
         {/* Scanning Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {/* Scanning Frame */}
-          <div className="relative mb-8">
-            <div className="w-80 h-48 border-2 border-dashed border-white/50 rounded-2xl relative overflow-hidden">
+          <div className="relative mb-6 sm:mb-8">
+            <div className="w-72 sm:w-80 h-40 sm:h-48 border-2 border-dashed border-white/50 rounded-2xl relative overflow-hidden">
               {/* Corner decorations */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-blue-400 rounded-tl-2xl"></div>
               <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-blue-400 rounded-tr-2xl"></div>
@@ -143,13 +143,13 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
           </div>
 
           {/* Status Messages */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 sm:mb-8 px-4">
             {!isScanning && !scanResult && (
               <>
-                <p className="text-white text-lg mb-2 font-medium">
+                <p className="text-white text-base sm:text-lg mb-2 font-medium">
                   Position medicine wrapper within frame
                 </p>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-300 text-xs sm:text-sm">
                   Ensure text is clear and well-lit for best results
                 </p>
               </>
@@ -158,14 +158,14 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
             {isScanning && (
               <div className="flex items-center space-x-3">
                 <Loader className="w-6 h-6 text-blue-400 animate-spin" />
-                <p className="text-white text-lg">Scanning and analyzing...</p>
+                <p className="text-white text-base sm:text-lg">Scanning and analyzing...</p>
               </div>
             )}
 
             {scanResult && (
               <div className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-green-400" />
-                <p className="text-green-400 text-lg">{scanResult}</p>
+                <p className="text-green-400 text-base sm:text-lg">{scanResult}</p>
               </div>
             )}
           </div>
@@ -173,21 +173,21 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
       </div>
 
       {/* Controls */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-6">
+      <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-4 sm:p-6">
         <div className="flex justify-center">
           <button
             onClick={simulateScanning}
             disabled={isScanning}
-            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white p-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200"
+            className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white p-3 sm:p-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-200"
           >
             {isScanning ? (
-              <Loader className="w-8 h-8 animate-spin" />
+              <Loader className="w-6 sm:w-8 h-6 sm:h-8 animate-spin" />
             ) : (
-              <Zap className="w-8 h-8" />
+              <Zap className="w-6 sm:w-8 h-6 sm:h-8" />
             )}
           </button>
         </div>
-        <p className="text-center text-white/80 text-sm mt-3">
+        <p className="text-center text-white/80 text-xs sm:text-sm mt-2 sm:mt-3">
           Tap to scan medicine wrapper
         </p>
       </div>
@@ -195,7 +195,13 @@ function CameraScanner({ onMedicineFound, onBack }: CameraScannerProps) {
       <style jsx>{`
         @keyframes scan {
           0% { transform: translateX(0); }
-          100% { transform: translateX(320px); }
+          100% { transform: translateX(288px); }
+        }
+        @media (min-width: 640px) {
+          @keyframes scan {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(320px); }
+          }
         }
       `}</style>
     </div>

@@ -102,7 +102,7 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-10">
-        <div className="px-4 py-4">
+        <div className="px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
@@ -111,8 +111,8 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
               >
                 <ArrowLeft className="w-5 h-5 text-gray-600" />
               </button>
-              <div>
-                <h1 className="text-xl font-semibold text-gray-900">Choose Your Plan</h1>
+              <div className="min-w-0 flex-1">
+                <h1 className="text-lg sm:text-xl font-semibold text-gray-900 truncate">Choose Your Plan</h1>
                 <p className="text-sm text-gray-600">Get access to verified MBBS doctors</p>
               </div>
             </div>
@@ -144,39 +144,39 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Crown className="w-8 h-8 text-yellow-500" />
-            <h2 className="text-3xl font-bold text-gray-900">Upgrade to Pro</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Upgrade to Pro</h2>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
             Get unlimited access to verified MBBS doctors and advanced health insights
           </p>
         </div>
 
         {/* Benefits */}
-        <div className="grid md:grid-cols-4 gap-6 mb-12">
-          <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12">
+          <div className="text-center p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100">
             <Users className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">Verified Doctors</h3>
+            <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Verified Doctors</h3>
             <p className="text-sm text-gray-600">Consult with licensed MBBS doctors</p>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div className="text-center p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100">
             <Clock className="w-8 h-8 text-green-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">24/7 Availability</h3>
+            <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">24/7 Availability</h3>
             <p className="text-sm text-gray-600">Book consultations anytime</p>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div className="text-center p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100">
             <Shield className="w-8 h-8 text-purple-600 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">Secure & Private</h3>
+            <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Secure & Private</h3>
             <p className="text-sm text-gray-600">HIPAA compliant consultations</p>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+          <div className="text-center p-4 sm:p-6 bg-white rounded-xl shadow-sm border border-gray-100">
             <Star className="w-8 h-8 text-yellow-500 mx-auto mb-3" />
-            <h3 className="font-semibold text-gray-900 mb-2">Premium Features</h3>
+            <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Premium Features</h3>
             <p className="text-sm text-gray-600">Advanced AI health insights</p>
           </div>
         </div>
 
         {/* Pricing Plans */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12">
           {plans.map((plan) => (
             <div
               key={plan.id}
@@ -194,11 +194,11 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
                 </div>
               )}
               
-              <div className="p-8">
+              <div className="p-4 sm:p-6 lg:p-8">
                 <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
                   <div className="mb-4">
-                    <span className="text-4xl font-bold text-gray-900">
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                       {formatPrice(plan.price)}
                     </span>
                     <span className="text-gray-600">/{plan.period}</span>
@@ -212,17 +212,17 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
 
                 <div className="mb-6">
                   <div className="text-center mb-4">
-                    <span className="text-lg font-semibold text-blue-600">
+                    <span className="text-base sm:text-lg font-semibold text-blue-600">
                       {plan.consultations} Doctor Consultations
                     </span>
                   </div>
                 </div>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-center space-x-3">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-gray-700 text-sm sm:text-base">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -243,14 +243,14 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
         </div>
 
         {/* Payment Methods */}
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-6">Payment Methods</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div className="bg-white rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm border border-gray-100 mb-8">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6">Payment Methods</h3>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
             {paymentMethods.map((method) => (
               <button
                 key={method.id}
                 onClick={() => setSelectedPayment(method.id)}
-                className={`p-4 rounded-xl border-2 transition-all duration-200 ${
+                className={`p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 ${
                   selectedPayment === method.id
                     ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
@@ -258,7 +258,7 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
               >
                 <div className="flex flex-col items-center space-y-2">
                   {method.icon}
-                  <span className="text-sm font-medium text-gray-900">{method.name}</span>
+                  <span className="text-xs sm:text-sm font-medium text-gray-900 text-center">{method.name}</span>
                   <div className="flex space-x-1">
                     {method.supported.map((region) => (
                       <span key={region} className="text-xs bg-gray-100 px-2 py-1 rounded">
@@ -275,7 +275,7 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
             <button
               onClick={handleSubscribe}
               disabled={isProcessing}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isProcessing ? (
                 <div className="flex items-center space-x-2">
@@ -291,7 +291,7 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
 
         {/* Security & Trust */}
         <div className="text-center">
-          <div className="flex items-center justify-center space-x-6 text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-500">
             <div className="flex items-center space-x-2">
               <Shield className="w-5 h-5" />
               <span className="text-sm">256-bit SSL Encryption</span>
@@ -305,7 +305,7 @@ function SubscriptionPlans({ onBack, onPlanSelected }: SubscriptionPlansProps) {
               <span className="text-sm">Global Support</span>
             </div>
           </div>
-          <p className="text-sm text-gray-500 mt-4">
+          <p className="text-sm text-gray-500 mt-3 sm:mt-4 px-4">
             Cancel anytime. No hidden fees. 30-day money-back guarantee.
           </p>
         </div>

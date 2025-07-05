@@ -31,11 +31,14 @@ function LanguageSelector({ className = '' }: LanguageSelectorProps) {
     <div className={`relative ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-2 px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+        className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
       >
         <Globe className="w-4 h-4 text-gray-600" />
-        <span className="text-sm font-medium text-gray-700">
+        <span className="text-xs sm:text-sm font-medium text-gray-700 hidden sm:inline">
           {currentLanguage.flag} {currentLanguage.name}
+        </span>
+        <span className="text-xs font-medium text-gray-700 sm:hidden">
+          {currentLanguage.flag}
         </span>
         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
@@ -46,7 +49,7 @@ function LanguageSelector({ className = '' }: LanguageSelectorProps) {
             className="fixed inset-0 z-10" 
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+          <div className="absolute top-full left-0 mt-1 w-40 sm:w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -56,7 +59,7 @@ function LanguageSelector({ className = '' }: LanguageSelectorProps) {
                 }`}
               >
                 <span className="text-lg">{lang.flag}</span>
-                <span className="font-medium">{lang.name}</span>
+                <span className="font-medium text-sm sm:text-base">{lang.name}</span>
                 {language === lang.code && (
                   <div className="ml-auto w-2 h-2 bg-blue-600 rounded-full" />
                 )}

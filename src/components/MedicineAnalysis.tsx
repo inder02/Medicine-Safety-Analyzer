@@ -435,7 +435,7 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
       <div className="bg-white/90 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
-        <div className="px-4 py-4">
+        <div className="px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
@@ -444,13 +444,13 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
               >
                 <ArrowLeft className="w-5 h-5 text-gray-600" />
               </button>
-              <div className="flex-1">
-                <h1 className="text-xl font-semibold text-gray-900">{medicine.name}</h1>
+              <div className="flex-1 min-w-0">
+                <h1 className="text-lg sm:text-xl font-semibold text-gray-900 truncate">{medicine.name}</h1>
                 <p className="text-sm text-gray-600">{medicine.genericName}</p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <VoiceOutput 
                 text={getTabContent()}
                 variant="button"
@@ -465,8 +465,8 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
         </div>
 
         {/* Tabs */}
-        <div className="px-4">
-          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1">
+        <div className="px-4 overflow-x-auto">
+          <div className="flex space-x-1 bg-gray-100 rounded-lg p-1 min-w-max">
             {[
               { id: 'overview', label: t('analysis.overview') },
               { id: 'organs', label: t('analysis.organs') },
@@ -477,7 +477,7 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition-colors ${
+                className={`flex-1 py-2 px-2 sm:px-3 rounded-md text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'bg-white text-blue-600 shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -495,20 +495,20 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {/* Overall Score */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <div className="text-center flex-1">
-                  <div className="text-4xl font-bold text-gray-900 mb-2">
+                  <div className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
                     {medicine.overallScore}/10
                   </div>
-                  <p className="text-gray-600 mb-4">{t('analysis.safety.score')}</p>
+                  <p className="text-gray-600 mb-4 text-sm sm:text-base">{t('analysis.safety.score')}</p>
                   <div className="w-full bg-gray-200 rounded-full h-3 mb-4">
                     <div
                       className="bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 h-3 rounded-full transition-all duration-1000"
                       style={{ width: `${medicine.overallScore * 10}%` }}
                     ></div>
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-xs sm:text-sm text-gray-600">
                     {t('analysis.based.on')}
                   </p>
                 </div>
@@ -522,37 +522,37 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border border-gray-100">
                 <Shield className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">{t('analysis.safety.rating')}</p>
-                <p className="font-semibold text-gray-900">{medicine.riskLevel.charAt(0).toUpperCase() + medicine.riskLevel.slice(1)}</p>
+                <p className="text-xs sm:text-sm text-gray-600">{t('analysis.safety.rating')}</p>
+                <p className="font-semibold text-gray-900 text-sm sm:text-base">{medicine.riskLevel.charAt(0).toUpperCase() + medicine.riskLevel.slice(1)}</p>
               </div>
-              <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border border-gray-100">
                 <Heart className="w-8 h-8 text-red-500 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">{t('analysis.organ.impact')}</p>
-                <p className="font-semibold text-gray-900">{data.organRisks.length} Systems</p>
+                <p className="text-xs sm:text-sm text-gray-600">{t('analysis.organ.impact')}</p>
+                <p className="font-semibold text-gray-900 text-sm sm:text-base">{data.organRisks.length} Systems</p>
               </div>
-              <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border border-gray-100">
                 <TrendingDown className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">{t('analysis.alternatives')}</p>
-                <p className="font-semibold text-gray-900">{data.alternatives.length} Options</p>
+                <p className="text-xs sm:text-sm text-gray-600">{t('analysis.alternatives')}</p>
+                <p className="font-semibold text-gray-900 text-sm sm:text-base">{data.alternatives.length} Options</p>
               </div>
-              <div className="bg-white rounded-xl p-4 text-center shadow-sm border border-gray-100">
+              <div className="bg-white rounded-xl p-3 sm:p-4 text-center shadow-sm border border-gray-100">
                 <Leaf className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                <p className="text-sm text-gray-600">Natural Options</p>
-                <p className="font-semibold text-gray-900">{data.ayurvedicAlternatives.length} Herbs</p>
+                <p className="text-xs sm:text-sm text-gray-600">Natural Options</p>
+                <p className="font-semibold text-gray-900 text-sm sm:text-base">{data.ayurvedicAlternatives.length} Herbs</p>
               </div>
             </div>
 
             {/* Key Warnings */}
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex items-start space-x-3 flex-1">
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-start justify-between space-y-3 sm:space-y-0">
+                <div className="flex items-start space-x-3 flex-1 w-full">
                   <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-amber-900 mb-2">{t('analysis.safety.info')}</h3>
-                    <ul className="text-amber-800 space-y-1 text-sm">
+                    <h3 className="font-semibold text-amber-900 mb-2 text-sm sm:text-base">{t('analysis.safety.info')}</h3>
+                    <ul className="text-amber-800 space-y-1 text-xs sm:text-sm">
                       <li>• {t('analysis.follow.dosage')}</li>
                       <li>• {t('analysis.consult.conditions')}</li>
                       <li>• {t('analysis.max.dose')}</li>
@@ -564,7 +564,7 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
                   text={`Important safety information: Always follow prescribed dosage instructions. Consult your doctor if you have liver or kidney conditions. Do not exceed maximum daily dose. Inform your healthcare provider about other medications.`}
                   variant="icon"
                   size="md"
-                  className="ml-4"
+                  className="sm:ml-4"
                 />
               </div>
             </div>
@@ -578,19 +578,19 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
               <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <button
                   onClick={() => toggleSection(`organ-${index}`)}
-                  className="w-full p-6 text-left hover:bg-gray-50 transition-colors"
+                  className="w-full p-4 sm:p-6 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-3 sm:space-y-0">
                     <div className="flex items-center space-x-4">
                       <div className={`p-2 rounded-lg ${getRiskColor(organ.risk).replace('text-', 'text-').replace('bg-', 'bg-').replace('border-', 'border-')}`}>
                         {organ.icon}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{organ.organ}</h3>
+                        <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{organ.organ}</h3>
                         <p className="text-sm text-gray-600">{organ.description}</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center justify-between sm:justify-end space-x-3 w-full sm:w-auto">
                       <VoiceOutput 
                         text={`${organ.organ} impact: ${organ.risk} risk with score ${organ.score} out of 10. ${organ.description}. Effects include: ${organ.effects.join(', ')}`}
                         variant="icon"
@@ -612,13 +612,13 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
                 </button>
                 
                 {expandedSections.has(`organ-${index}`) && (
-                  <div className="px-6 pb-6 border-t border-gray-100">
-                    <h4 className="font-medium text-gray-900 mb-3">{t('analysis.potential.effects')}:</h4>
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-100">
+                    <h4 className="font-medium text-gray-900 mb-3 text-sm sm:text-base">{t('analysis.potential.effects')}:</h4>
                     <ul className="space-y-2">
                       {organ.effects.map((effect, effectIndex) => (
                         <li key={effectIndex} className="flex items-start space-x-2">
                           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-700 text-sm">{effect}</span>
+                          <span className="text-gray-700 text-xs sm:text-sm">{effect}</span>
                         </li>
                       ))}
                     </ul>
@@ -633,14 +633,14 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
         {activeTab === 'alternatives' && (
           <div className="space-y-4">
             {data.alternatives.map((alternative, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                <div className="flex items-start justify-between mb-4">
+              <div key={index} className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 space-y-3 sm:space-y-0">
                   <div>
-                    <h3 className="font-semibold text-gray-900 text-lg">{alternative.name}</h3>
+                    <h3 className="font-semibold text-gray-900 text-base sm:text-lg">{alternative.name}</h3>
                     <p className="text-gray-600 text-sm">{alternative.genericName}</p>
                     <p className="text-gray-500 text-sm mt-1">{alternative.commonUse}</p>
                   </div>
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-between sm:justify-end space-x-3 w-full sm:w-auto">
                     <VoiceOutput 
                       text={`Alternative medicine: ${alternative.name}, also known as ${alternative.genericName}. Safety score ${alternative.safetyScore} out of 10. Commonly used for ${alternative.commonUse}. Advantages include: ${alternative.advantages.join(', ')}`}
                       variant="icon"
@@ -657,12 +657,12 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
                 </div>
                 
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">{t('analysis.advantages')}:</h4>
+                  <h4 className="font-medium text-gray-900 mb-2 text-sm sm:text-base">{t('analysis.advantages')}:</h4>
                   <ul className="space-y-1">
                     {alternative.advantages.map((advantage, advIndex) => (
                       <li key={advIndex} className="flex items-start space-x-2">
                         <div className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-gray-700 text-sm">{advantage}</span>
+                        <span className="text-gray-700 text-xs sm:text-sm">{advantage}</span>
                       </li>
                     ))}
                   </ul>
@@ -670,13 +670,13 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
               </div>
             ))}
             
-            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex items-start space-x-3 flex-1">
+            <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 sm:p-6">
+              <div className="flex flex-col sm:flex-row items-start justify-between space-y-3 sm:space-y-0">
+                <div className="flex items-start space-x-3 flex-1 w-full">
                   <Info className="w-6 h-6 text-blue-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-blue-900 mb-2">{t('analysis.consult.provider')}</h3>
-                    <p className="text-blue-800 text-sm">
+                    <h3 className="font-semibold text-blue-900 mb-2 text-sm sm:text-base">{t('analysis.consult.provider')}</h3>
+                    <p className="text-blue-800 text-xs sm:text-sm">
                       {t('analysis.discuss.alternatives')}
                     </p>
                   </div>
@@ -685,7 +685,7 @@ function MedicineAnalysis({ medicine, onBack }: MedicineAnalysisProps) {
                   text="Always discuss alternative medications with your doctor or pharmacist before making any changes to your treatment plan. They can provide personalized recommendations based on your medical history and current conditions."
                   variant="icon"
                   size="md"
-                  className="ml-4"
+                  className="sm:ml-4"
                 />
               </div>
             </div>

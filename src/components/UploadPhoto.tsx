@@ -109,7 +109,7 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50">
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-purple-100 sticky top-0 z-10">
-        <div className="px-4 py-4">
+        <div className="px-4 py-3 sm:py-4">
           <div className="flex items-center space-x-4">
             <button
               onClick={onBack}
@@ -117,7 +117,7 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
-            <h1 className="text-xl font-semibold text-gray-900">Upload Photo</h1>
+            <h1 className="text-lg sm:text-xl font-semibold text-gray-900">Upload Photo</h1>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
         {!uploadedImage ? (
           // Upload Area
           <div
-            className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
+            className={`border-2 border-dashed rounded-2xl p-6 sm:p-12 text-center transition-all duration-300 ${
               isDragOver
                 ? 'border-purple-400 bg-purple-50'
                 : 'border-gray-300 hover:border-purple-300 hover:bg-purple-50/50'
@@ -135,12 +135,12 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
           >
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <Upload className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
                 Upload Medicine Photo
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                 Drag and drop your medicine photo here, or click to browse
               </p>
             </div>
@@ -155,25 +155,25 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
 
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-medium hover:shadow-lg transform hover:scale-105 transition-all duration-200 text-sm sm:text-base"
             >
               Choose Photo
             </button>
 
-            <div className="mt-8 text-sm text-gray-500">
+            <div className="mt-6 sm:mt-8 text-xs sm:text-sm text-gray-500">
               <p className="mb-2">Supported formats: JPG, PNG, WEBP</p>
               <p>For best results, ensure the medicine wrapper or label is clearly visible</p>
             </div>
           </div>
         ) : (
           // Processing Area
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Uploaded Image */}
             <div className="relative">
               <img
                 src={uploadedImage}
                 alt="Uploaded medicine"
-                className="w-full max-h-96 object-contain bg-gray-50 rounded-2xl"
+                className="w-full max-h-64 sm:max-h-96 object-contain bg-gray-50 rounded-2xl"
               />
               {!isProcessing && (
                 <button
@@ -187,7 +187,7 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
 
             {/* Processing Status */}
             {isProcessing && (
-              <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-100">
                 <div className="text-center">
                   <div className="mb-4">
                     {processingStep === 'Analysis complete!' ? (
@@ -196,10 +196,10 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
                       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
                     )}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
                     {processingStep === 'Analysis complete!' ? 'Processing Complete!' : 'Processing Image...'}
                   </h3>
-                  <p className="text-purple-600 font-medium">{processingStep}</p>
+                  <p className="text-purple-600 font-medium text-sm sm:text-base">{processingStep}</p>
                   
                   {processingStep !== 'Analysis complete!' && (
                     <div className="mt-4 bg-gray-200 rounded-full h-2">
@@ -212,12 +212,12 @@ function UploadPhoto({ onMedicineFound, onBack }: UploadPhotoProps) {
             )}
 
             {/* Tips */}
-            <div className="bg-blue-50 rounded-2xl p-6 border border-blue-200">
+            <div className="bg-blue-50 rounded-2xl p-4 sm:p-6 border border-blue-200">
               <div className="flex items-start space-x-3">
                 <AlertCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-semibold text-blue-900 mb-2">Photo Tips for Better Results</h3>
-                  <ul className="text-blue-800 text-sm space-y-1">
+                  <h3 className="font-semibold text-blue-900 mb-2 text-sm sm:text-base">Photo Tips for Better Results</h3>
+                  <ul className="text-blue-800 text-xs sm:text-sm space-y-1">
                     <li>• Ensure good lighting and clear text visibility</li>
                     <li>• Include the full medicine wrapper or bottle label</li>
                     <li>• Avoid shadows or reflections on the text</li>

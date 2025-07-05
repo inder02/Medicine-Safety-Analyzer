@@ -267,7 +267,7 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
       <div className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-10">
-        <div className="px-4 py-4">
+        <div className="px-4 py-3 sm:py-4">
           <div className="flex items-center space-x-4">
             <button
               onClick={onBack}
@@ -275,9 +275,9 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
             >
               <ArrowLeft className="w-5 h-5 text-gray-600" />
             </button>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 flex-1">
               <Globe className="w-5 h-5 text-blue-600" />
-              <h1 className="text-xl font-semibold text-gray-900">{t('home.search')} - Global Database</h1>
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-900 truncate">{t('home.search')} - Global Database</h1>
             </div>
           </div>
         </div>
@@ -290,10 +290,10 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               type="text"
-              placeholder="Search any medicine worldwide..."
+              placeholder="Search medicine..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-16 py-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+              className="w-full pl-12 pr-16 py-3 sm:py-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base sm:text-lg"
             />
             <button
               onClick={() => setShowVoiceInput(!showVoiceInput)}
@@ -324,12 +324,12 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
         )}
 
         {/* Global Search Info */}
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+        <div className="mb-6 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-xl">
           <div className="flex items-center space-x-2 mb-2">
             <Globe className="w-5 h-5 text-blue-600" />
-            <h3 className="font-semibold text-blue-900">Global Medicine Database</h3>
+            <h3 className="font-semibold text-blue-900 text-sm sm:text-base">Global Medicine Database</h3>
           </div>
-          <p className="text-blue-800 text-sm">
+          <p className="text-blue-800 text-xs sm:text-sm">
             Search for any medicine by brand name, generic name, or common aliases. Our AI can analyze virtually any medication worldwide.
           </p>
         </div>
@@ -337,27 +337,27 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
         {/* Search Results */}
         {searchQuery && (
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">
               {t('search.results')} ({filteredMedicines.length} found)
             </h2>
             {filteredMedicines.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {filteredMedicines.map((medicine) => (
                   <button
                     key={medicine.id}
                     onClick={() => handleMedicineClick(medicine)}
-                    className="w-full bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all duration-200 text-left"
+                    className="w-full bg-white rounded-xl p-3 sm:p-4 shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all duration-200 text-left"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 mb-1">{medicine.name}</h3>
+                        <h3 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">{medicine.name}</h3>
                         <p className="text-sm text-gray-600 mb-2">{medicine.genericName}</p>
                         <p className="text-xs text-gray-500">{medicine.manufacturer}</p>
                         {medicine.id.startsWith('generated-') && (
                           <p className="text-xs text-blue-600 mt-1">✨ AI Generated Analysis</p>
                         )}
                       </div>
-                      <div className="text-right">
+                      <div className="text-right sm:ml-4">
                         <div className={`px-3 py-1 rounded-full text-xs font-medium border ${getRiskColor(medicine.riskLevel)}`}>
                           {t(`risk.${medicine.riskLevel}`)}
                         </div>
@@ -383,14 +383,14 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
             <div className="mb-8">
               <div className="flex items-center space-x-2 mb-4">
                 <TrendingUp className="w-5 h-5 text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-900">{t('search.popular')}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900">{t('search.popular')}</h2>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
                 {popularSearches.map((search) => (
                   <button
                     key={search}
                     onClick={() => handleQuickSearch(search)}
-                    className="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 transition-colors"
+                    className="px-3 sm:px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-100 transition-colors text-center"
                   >
                     {search}
                   </button>
@@ -401,17 +401,17 @@ function SearchMedicine({ onMedicineSelected, onBack }: SearchMedicineProps) {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Clock className="w-5 h-5 text-gray-600" />
-                <h2 className="text-lg font-semibold text-gray-900">{t('search.recent')}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-gray-900">{t('search.recent')}</h2>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1 sm:space-y-2">
                 {recentSearches.map((search) => (
                   <button
                     key={search}
                     onClick={() => handleQuickSearch(search)}
-                    className="flex items-center w-full p-3 bg-white rounded-lg border border-gray-100 hover:border-gray-200 transition-colors text-left"
+                    className="flex items-center w-full p-2 sm:p-3 bg-white rounded-lg border border-gray-100 hover:border-gray-200 transition-colors text-left"
                   >
                     <Clock className="w-4 h-4 text-gray-400 mr-3" />
-                    <span className="text-gray-700">{search}</span>
+                    <span className="text-gray-700 text-sm sm:text-base">{search}</span>
                   </button>
                 ))}
               </div>
